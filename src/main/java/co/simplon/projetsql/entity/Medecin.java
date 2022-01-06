@@ -1,6 +1,6 @@
 package co.simplon.projetsql.entity;
 
-public class Medecin {
+public class Medecin extends User {
     private int medecin_id;
     private String adresse;
     private String legalMention;
