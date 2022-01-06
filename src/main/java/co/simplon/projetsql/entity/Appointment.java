@@ -1,4 +1,4 @@
-package co.simplon.projetsq.entity;
+package co.simplon.projetsql.entity;
 
 import java.time.LocalDate;
 
