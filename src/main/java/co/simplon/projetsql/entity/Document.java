@@ -2,16 +2,19 @@ package co.simplon.projetsql.entity;
 
 public class Document {
     private int doc_id;
+    private int patient_id;
     private String name;
 
     /* constructors */
 
-    public Document(int doc_id, String name) {
-        this.doc_id = doc_id;
+    public Document(int patient_id, String name) {
+        this.patient_id = patient_id;
         this.name = name;
     }
 
-    public Document(String name) {
+    public Document(int doc_id, int patient_id, String name) {
+        this.doc_id = doc_id;
+        this.patient_id = patient_id;
         this.name = name;
     }
 
@@ -34,5 +37,13 @@ public class Document {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getPatient_id() {
+        return patient_id;
+    }
+
+    public void setPatient_id(int patient_id) {
+        this.patient_id = patient_id;
     }
 }
