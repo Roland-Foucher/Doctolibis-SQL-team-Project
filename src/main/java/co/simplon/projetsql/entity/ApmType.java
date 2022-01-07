@@ -2,11 +2,11 @@ package co.simplon.projetsql.entity;
 
 public class ApmType {
     
-    private int apmType_id;
+    private Integer apmType_id;
     private String type;
 
     // constructors
-    public ApmType(int apmType_id, String type) {
+    public ApmType(Integer apmType_id, String type) {
         this.apmType_id = apmType_id;
         this.type = type;
     }
@@ -18,10 +18,10 @@ public class ApmType {
     public ApmType() {
     }
         // getter&setter
-    public int getApmType_id() {
+    public Integer getApmType_id() {
         return apmType_id;
     }
-    public void setApmType_id(int apmType_id) {
+    public void setApmType_id(Integer apmType_id) {
         this.apmType_id = apmType_id;
     }
 

@@ -6,10 +6,10 @@ import co.simplon.projetsql.entity.ApmType;
 
 public interface IApmTypeRepository {
 
-    void addApmType(ApmType apmType);
+    boolean addApmType(ApmType apmType);
     ApmType disPlayapmType(int id);
-    void modifyApmType(ApmType apmType);
-    void deleteApm(int id);
+    boolean modifyApmType(ApmType apmType);
+    boolean deleteApm(int id);
     List<ApmType>showListOfRoles();
     
 }
