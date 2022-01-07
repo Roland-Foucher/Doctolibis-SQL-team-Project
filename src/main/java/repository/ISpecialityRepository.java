@@ -5,14 +5,14 @@ import java.util.List;
 import co.simplon.projetsql.entity.Speciality;
 
 public interface ISpecialityRepository {
-    List<Speciality> findAll();
+    List<Speciality> findAll(Integer id);
 
-    void addSpeciality();
+    boolean addSpeciality(Speciality speciality);
 
-    void modifySpeciality();
+    boolean modifySpeciality(Speciality speciality);
 
-    void deleteSpeciality();
+    boolean deleteSpeciality(Integer id);
 
-    Speciality displaySpeciality();
+    Speciality displaySpeciality(Integer id);
 
 }

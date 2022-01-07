@@ -5,14 +5,14 @@ import java.util.List;
 import co.simplon.projetsql.entity.Document;
 
 public interface IDocumentRepository {
-    List<Document> findAll();
+    List<Document> findAll(Integer id);
 
-    void addDocument();
+    boolean addDocument(Document document);
 
-    void modifyDocument();
+    boolean modifyDocument(Document document);
 
-    void deleteDocument();
+    boolean deleteDocument(Integer id);
 
-    Document displayDocument();
+    Document displayDocument(Integer id);
 
 }

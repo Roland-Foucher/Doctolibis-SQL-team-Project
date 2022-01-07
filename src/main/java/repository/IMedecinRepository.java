@@ -5,14 +5,14 @@ import java.util.List;
 import co.simplon.projetsql.entity.Medecin;
 
 public interface IMedecinRepository {
-    List<Medecin> findAll();
+    List<Medecin> findAll(Integer id);
 
-    void addMedecin();
+    boolean addMedecin(Medecin medecin);
 
-    void modifyMedecin();
+    boolean modifyMedecin(Medecin medecin);
 
-    void deleteMedecin();
+    boolean deleteMedecin(Integer id);
 
-    Medecin displayMedecin();
+    Medecin displayMedecin(Integer id);
 
 }

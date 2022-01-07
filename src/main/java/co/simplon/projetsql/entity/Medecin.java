@@ -1,18 +1,18 @@
 package co.simplon.projetsql.entity;
 
 public class Medecin {
-    private int medecin_id;
-    private int user_id;
+    private Integer medecin_id;
+    private Integer user_id;
     private String adresse;
     private String legalMention;
     private String speciality;
     private String presentation;
-    private int price;
+    private Integer price;
 
     /* constructors */
 
-    public Medecin(int user_id, String adresse, String legalMention, String speciality, String presentation,
-            int price) {
+    public Medecin(Integer user_id, String adresse, String legalMention, String speciality, String presentation,
+            Integer price) {
         this.user_id = user_id;
         this.adresse = adresse;
         this.legalMention = legalMention;
@@ -21,8 +21,8 @@ public class Medecin {
         this.price = price;
     }
 
-    public Medecin(int medecin_id, int user_id, String adresse, String legalMention, String speciality,
-            String presentation, int price) {
+    public Medecin(Integer medecin_id, Integer user_id, String adresse, String legalMention, String speciality,
+            String presentation, Integer price) {
         this.medecin_id = medecin_id;
         this.user_id = user_id;
         this.adresse = adresse;
@@ -37,11 +37,11 @@ public class Medecin {
 
     /* getter/setter */
 
-    public int getMedecin_id() {
+    public Integer getMedecin_id() {
         return medecin_id;
     }
 
-    public void setMedecin_id(int medecin_id) {
+    public void setMedecin_id(Integer medecin_id) {
         this.medecin_id = medecin_id;
     }
 
@@ -77,19 +77,26 @@ public class Medecin {
         this.presentation = presentation;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
-    public int getUser_id() {
+    public Integer getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(Integer user_id) {
         this.user_id = user_id;
+    }
+
+    @Override
+    public String toString() {
+        return "Medecin [adresse=" + adresse + ", legalMention=" + legalMention + ", medecin_id=" + medecin_id
+                + ", presentation=" + presentation + ", price=" + price + ", speciality=" + speciality + ", user_id="
+                + user_id + "]";
     }
 }
