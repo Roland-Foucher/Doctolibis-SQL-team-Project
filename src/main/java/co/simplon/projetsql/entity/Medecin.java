@@ -1,43 +1,48 @@
 package co.simplon.projetsql.entity;
 
 public class Medecin extends User {
-    private int medecin_id;
+    
+    private Integer medecin_id;
+    private Integer user_id;
     private String adresse;
     private String legalMention;
     private String speciality;
     private String presentation;
-    private int price;
+    private Integer price;
 
     /* constructors */
+
+    public Medecin(Integer user_id, String adresse, String legalMention, String speciality, String presentation,
+            Integer price) {
+        this.user_id = user_id;
+        this.adresse = adresse;
+        this.legalMention = legalMention;
+        this.speciality = speciality;
+        this.presentation = presentation;
+        this.price = price;
+    }
+
+    public Medecin(Integer medecin_id, Integer user_id, String adresse, String legalMention, String speciality,
+            String presentation, Integer price) {
+        this.medecin_id = medecin_id;
+        this.user_id = user_id;
+        this.adresse = adresse;
+        this.legalMention = legalMention;
+        this.speciality = speciality;
+        this.presentation = presentation;
+        this.price = price;
+    }
 
     public Medecin() {
     }
 
-    public Medecin(String adresse, String legalMention, String speciality, String presentation, int price) {
-        this.adresse = adresse;
-        this.legalMention = legalMention;
-        this.speciality = speciality;
-        this.presentation = presentation;
-        this.price = price;
-    }
-
-    public Medecin(int medecin_id, String adresse, String legalMention, String speciality, String presentation,
-            int price) {
-        this.medecin_id = medecin_id;
-        this.adresse = adresse;
-        this.legalMention = legalMention;
-        this.speciality = speciality;
-        this.presentation = presentation;
-        this.price = price;
-    }
-
     /* getter/setter */
 
-    public int getMedecin_id() {
+    public Integer getMedecin_id() {
         return medecin_id;
     }
 
-    public void setMedecin_id(int medecin_id) {
+    public void setMedecin_id(Integer medecin_id) {
         this.medecin_id = medecin_id;
     }
 
@@ -73,11 +78,26 @@ public class Medecin extends User {
         this.presentation = presentation;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public Integer getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
+    }
+
+    @Override
+    public String toString() {
+        return "Medecin [adresse=" + adresse + ", legalMention=" + legalMention + ", medecin_id=" + medecin_id
+                + ", presentation=" + presentation + ", price=" + price + ", speciality=" + speciality + ", user_id="
+                + user_id + "]";
     }
 }
