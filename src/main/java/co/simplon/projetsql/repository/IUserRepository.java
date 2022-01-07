@@ -10,11 +10,10 @@ public interface IUserRepository {
 
     User find(Integer id);
 
-    void save(User user);
+    boolean save(User user);
 
-    void update(User user);
+    boolean update(User user);
     
-    void delete(Integer Id);
-    // void connectUser();
-    // void subscribeUser();
+    boolean deleteById(Integer Id);
+  
 }

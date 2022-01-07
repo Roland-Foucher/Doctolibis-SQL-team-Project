@@ -10,9 +10,9 @@ public interface IRoleRepository {
 
     Role find(Integer id);
 
-    void save(Role role);
+    boolean save(Role role);
 
-    void update(Role role);
+    boolean update(Role role);
 
-    void delete(Integer Id);
+    boolean deleteById(Integer Id);
 }
