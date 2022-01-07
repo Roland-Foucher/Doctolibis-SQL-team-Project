@@ -22,7 +22,7 @@ public class DocumentRepository implements IDocumentRepository {
     }
 
     @Override
-    public List<Document> findAll(Integer id) {
+    public List<Document> findAll() {
         try {
 
             PreparedStatement stmt = connection.prepareStatement("SELECT * FROM document");
@@ -44,11 +44,10 @@ public class DocumentRepository implements IDocumentRepository {
     public boolean addDocument(Document document) {
         try {
             PreparedStatement stmt = connection
-                    .prepareStatement("INSERT INTO document (doc_id, patient_id, name) VALUES (?,?,?)",
+                    .prepareStatement("INSERT INTO document (patient_id, name) VALUES (?,?)",
                             PreparedStatement.RETURN_GENERATED_KEYS);
-            stmt.setInt(1, document.getDoc_id());
-            stmt.setInt(2, document.getPatient_id());
-            stmt.setString(3, document.getName());
+            stmt.setInt(1, document.getPatient_id());
+            stmt.setString(2, document.getName());
 
             if (stmt.executeUpdate() == 1) {
                 ResultSet result = stmt.getGeneratedKeys();
@@ -71,10 +70,11 @@ public class DocumentRepository implements IDocumentRepository {
     public boolean modifyDocument(Document document) {
         try {
             PreparedStatement stmt = connection
-                    .prepareStatement("UPDATE document SET doc_id=?, patient_id=?, name=? WHERE doc_id=?");
-            stmt.setInt(1, document.getDoc_id());
-            stmt.setInt(2, document.getPatient_id());
-            stmt.setString(3, document.getName());
+                    .prepareStatement("UPDATE document SET patient_id=?, name=? WHERE doc_id=?");
+            
+            stmt.setInt(1, document.getPatient_id());
+            stmt.setString(2, document.getName());
+            stmt.setInt(3, document.getDoc_id());
 
             return stmt.executeUpdate() == 1;
 

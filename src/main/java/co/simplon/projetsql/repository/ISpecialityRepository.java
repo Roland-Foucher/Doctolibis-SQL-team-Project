@@ -5,7 +5,7 @@ import java.util.List;
 import co.simplon.projetsql.entity.Speciality;
 
 public interface ISpecialityRepository {
-    List<Speciality> findAll(Integer id);
+    List<Speciality> findAll();
 
     boolean addSpeciality(Speciality speciality);
 

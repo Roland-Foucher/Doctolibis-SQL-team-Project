@@ -5,7 +5,7 @@ import java.util.List;
 import co.simplon.projetsql.entity.Document;
 
 public interface IDocumentRepository {
-    List<Document> findAll(Integer id);
+    List<Document> findAll();
 
     boolean addDocument(Document document);
 

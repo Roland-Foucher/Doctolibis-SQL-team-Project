@@ -22,9 +22,8 @@ public class PatientRepository implements IPatientReposotory {
     }
 
     @Override
-    public List<Patient> findAll(Integer id) {
+    public List<Patient> findAll() {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://simplon:1234@localhost:3306/DOCTOLIBIS");
             PreparedStatement stmt = connection.prepareStatement("SELECT * FROM patient");
             ResultSet result = stmt.executeQuery();
             List<Patient> patientList = new ArrayList<>();
@@ -45,12 +44,12 @@ public class PatientRepository implements IPatientReposotory {
         try {
             PreparedStatement stmt = connection
                     .prepareStatement(
-                            "INSERT INTO patient (patient_id, user_id, phoneNumber, secuNumber) VALUES (?,?,?,?)",
+                            "INSERT INTO patient (user_id, phoneNumber, secuNumber) VALUES (?,?,?)",
                             PreparedStatement.RETURN_GENERATED_KEYS);
-            stmt.setInt(1, patient.getPatient_id());
-            stmt.setInt(2, patient.getUser_id());
-            stmt.setInt(3, patient.getPhoneNumber());
-            stmt.setInt(3, patient.getSecuNumber());
+            
+            stmt.setInt(1, patient.getUser_id());
+            stmt.setInt(2, patient.getPhoneNumber());
+            stmt.setLong(3, patient.getSecuNumber());
 
             if (stmt.executeUpdate() == 1) {
                 ResultSet result = stmt.getGeneratedKeys();
@@ -74,11 +73,12 @@ public class PatientRepository implements IPatientReposotory {
         try {
             PreparedStatement stmt = connection
                     .prepareStatement(
-                            "UPDATE patient SET patient_id=?, user_id=?, phoneNumber=?, secuNumber=? WHERE patient_id=?");
-            stmt.setInt(1, patient.getPatient_id());
-            stmt.setInt(2, patient.getUser_id());
-            stmt.setInt(3, patient.getPhoneNumber());
-            stmt.setInt(3, patient.getSecuNumber());
+                            "UPDATE patient SET user_id=?, phoneNumber=?, secuNumber=? WHERE patient_id=?");
+            
+            stmt.setInt(1, patient.getUser_id());
+            stmt.setInt(2, patient.getPhoneNumber());
+            stmt.setLong(3, patient.getSecuNumber());
+            stmt.setLong(4, patient.getPatient_id());
 
             return stmt.executeUpdate() == 1;
 
@@ -124,7 +124,7 @@ public class PatientRepository implements IPatientReposotory {
                     result.getInt("patient_id"),
                     result.getInt("user_id"),
                     result.getInt("phoneNumber"),
-                    result.getInt("secuNumber"));
+                    result.getLong("secuNumber"));
         } catch (SQLException e) {
             e.printStackTrace();
         }

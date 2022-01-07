@@ -5,7 +5,7 @@ import java.util.List;
 import co.simplon.projetsql.entity.Medecin;
 
 public interface IMedecinRepository {
-    List<Medecin> findAll(Integer id);
+    List<Medecin> findAll();
 
     boolean addMedecin(Medecin medecin);
 

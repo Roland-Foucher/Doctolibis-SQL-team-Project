@@ -5,18 +5,18 @@ public class Patient extends User {
     private Integer patient_id;
     private Integer user_id;
     private Integer phoneNumber;
-    private Integer secuNumber;
+    private Long secuNumber;
 
 
     /* constructors */
 
-    public Patient(Integer user_id, Integer phoneNumber, Integer secuNumber) {
+    public Patient(Integer user_id, Integer phoneNumber, Long secuNumber) {
         this.user_id = user_id;
         this.phoneNumber = phoneNumber;
         this.secuNumber = secuNumber;
     }
 
-    public Patient(Integer patient_id, Integer user_id, Integer phoneNumber, Integer secuNumber) {
+    public Patient(Integer patient_id, Integer user_id, Integer phoneNumber, Long secuNumber) {
         this.patient_id = patient_id;
         this.user_id = user_id;
         this.phoneNumber = phoneNumber;
@@ -44,11 +44,11 @@ public class Patient extends User {
         this.phoneNumber = phoneNumber;
     }
 
-    public Integer getSecuNumber() {
+    public Long getSecuNumber() {
         return secuNumber;
     }
 
-    public void setSecuNumber(Integer secuNumber) {
+    public void setSecuNumber(Long secuNumber) {
         this.secuNumber = secuNumber;
     }
 

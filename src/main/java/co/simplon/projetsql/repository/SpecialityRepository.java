@@ -22,9 +22,8 @@ public class SpecialityRepository implements ISpecialityRepository {
     }
 
     @Override
-    public List<Speciality> findAll(Integer id) {
+    public List<Speciality> findAll() {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://simplon:1234@localhost:3306/DOCTOLIBIS");
             PreparedStatement stmt = connection.prepareStatement("SELECT * FROM speciality");
             ResultSet result = stmt.executeQuery();
             List<Speciality> specialityList = new ArrayList<>();
@@ -45,10 +44,10 @@ public class SpecialityRepository implements ISpecialityRepository {
         try {
             PreparedStatement stmt = connection
                     .prepareStatement(
-                            "INSERT INTO speciality (spe_id, name) VALUES (?,?)",
+                            "INSERT INTO speciality (name) VALUES (?)",
                             PreparedStatement.RETURN_GENERATED_KEYS);
-            stmt.setInt(1, speciality.getSpe_id());
-            stmt.setString(2, speciality.getName());
+            
+            stmt.setString(1, speciality.getName());
 
             if (stmt.executeUpdate() == 1) {
                 ResultSet result = stmt.getGeneratedKeys();
@@ -71,9 +70,10 @@ public class SpecialityRepository implements ISpecialityRepository {
         try {
             PreparedStatement stmt = connection
                     .prepareStatement(
-                            "UPDATE speciality SET spe_id=?, name=? WHERE spe_id=?");
-            stmt.setInt(1, speciality.getSpe_id());
-            stmt.setString(2, speciality.getName());
+                            "UPDATE speciality SET name=? WHERE spe_id=?");
+            
+            stmt.setString(1, speciality.getName());
+            stmt.setInt(2, speciality.getSpe_id());
 
             return stmt.executeUpdate() == 1;
 

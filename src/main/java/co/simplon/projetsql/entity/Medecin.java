@@ -6,37 +6,40 @@ public class Medecin extends User {
     private Integer user_id;
     private String adresse;
     private String legalMention;
-    private String speciality;
     private String presentation;
     private Integer price;
+    private Integer phoneNumber;
 
     /* constructors */
 
-    public Medecin(Integer user_id, String adresse, String legalMention, String speciality, String presentation,
-            Integer price) {
+    public Medecin(Integer user_id, String adresse, String legalMention, String presentation,
+            Integer price, Integer phoneNumber) {
         this.user_id = user_id;
         this.adresse = adresse;
         this.legalMention = legalMention;
-        this.speciality = speciality;
         this.presentation = presentation;
         this.price = price;
+        this.phoneNumber = phoneNumber;
     }
 
-    public Medecin(Integer medecin_id, Integer user_id, String adresse, String legalMention, String speciality,
-            String presentation, Integer price) {
+
+    public Medecin(Integer medecin_id, Integer user_id, String adresse, String legalMention,
+            String presentation, Integer price, Integer phoneNumber) {
         this.medecin_id = medecin_id;
         this.user_id = user_id;
         this.adresse = adresse;
         this.legalMention = legalMention;
-        this.speciality = speciality;
         this.presentation = presentation;
         this.price = price;
+        this.phoneNumber = phoneNumber;
     }
 
     public Medecin() {
     }
 
     /* getter/setter */
+
+    
 
     public Integer getMedecin_id() {
         return medecin_id;
@@ -60,14 +63,6 @@ public class Medecin extends User {
 
     public void setLegalMention(String legalMention) {
         this.legalMention = legalMention;
-    }
-
-    public String getSpeciality() {
-        return speciality;
-    }
-
-    public void setSpeciality(String speciality) {
-        this.speciality = speciality;
     }
 
     public String getPresentation() {
@@ -94,10 +89,24 @@ public class Medecin extends User {
         this.user_id = user_id;
     }
 
+    public Integer getPhoneNumber() {
+        return phoneNumber;
+    }
+
+
+    public void setPhoneNumber(Integer phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+
     @Override
     public String toString() {
         return "Medecin [adresse=" + adresse + ", legalMention=" + legalMention + ", medecin_id=" + medecin_id
-                + ", presentation=" + presentation + ", price=" + price + ", speciality=" + speciality + ", user_id="
-                + user_id + "]";
+                + ", phoneNumber=" + phoneNumber + ", presentation=" + presentation + ", price=" + price
+                + ", user_id=" + user_id + "]";
     }
+    
+
+
+    
 }
