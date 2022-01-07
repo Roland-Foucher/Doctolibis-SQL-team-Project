@@ -1,4 +1,4 @@
-package repository;
+package co.simplon.projetsql.repository;
 
 import java.util.List;
 import java.sql.Connection;
@@ -8,12 +8,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import co.simplon.projetsql.entity.Document;
+import co.simplon.projetsql.entity.Speciality;
 
-public class DocumentRepository implements IDocumentRepository {
+public class SpecialityRepository implements ISpecialityRepository {
     Connection connection;
 
-    public DocumentRepository() {
+    public SpecialityRepository() {
         try {
             connection = DriverManager.getConnection("jdbc:mysql://simplon:1234@localhost:3306/DOCTOLIBIS");
         } catch (SQLException e) {
@@ -22,17 +22,17 @@ public class DocumentRepository implements IDocumentRepository {
     }
 
     @Override
-    public List<Document> findAll(Integer id) {
+    public List<Speciality> findAll(Integer id) {
         try {
-
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM document");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://simplon:1234@localhost:3306/DOCTOLIBIS");
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM speciality");
             ResultSet result = stmt.executeQuery();
-            List<Document> documentList = new ArrayList<>();
+            List<Speciality> specialityList = new ArrayList<>();
             while (result.next()) {
-                Document document = instanciateDocumet(result);
-                documentList.add(document);
+                Speciality speciality = instanciateSpeciality(result);
+                specialityList.add(speciality);
             }
-            return documentList;
+            return specialityList;
         } catch (SQLException e) {
 
             e.printStackTrace();
@@ -41,19 +41,19 @@ public class DocumentRepository implements IDocumentRepository {
     }
 
     @Override
-    public boolean addDocument(Document document) {
+    public boolean addSpeciality(Speciality speciality) {
         try {
             PreparedStatement stmt = connection
-                    .prepareStatement("INSERT INTO document (doc_id, patient_id, name) VALUES (?,?,?)",
+                    .prepareStatement(
+                            "INSERT INTO speciality (spe_id, name) VALUES (?,?)",
                             PreparedStatement.RETURN_GENERATED_KEYS);
-            stmt.setInt(1, document.getDoc_id());
-            stmt.setInt(2, document.getPatient_id());
-            stmt.setString(3, document.getName());
+            stmt.setInt(1, speciality.getSpe_id());
+            stmt.setString(2, speciality.getName());
 
             if (stmt.executeUpdate() == 1) {
                 ResultSet result = stmt.getGeneratedKeys();
                 result.next();
-                document.setDoc_id(result.getInt(1));
+                speciality.setSpe_id(result.getInt(1));
 
                 return true;
             }
@@ -64,17 +64,16 @@ public class DocumentRepository implements IDocumentRepository {
         }
 
         return false;
-
     }
 
     @Override
-    public boolean modifyDocument(Document document) {
+    public boolean modifySpeciality(Speciality speciality) {
         try {
             PreparedStatement stmt = connection
-                    .prepareStatement("UPDATE document SET doc_id=?, patient_id=?, name=? WHERE doc_id=?");
-            stmt.setInt(1, document.getDoc_id());
-            stmt.setInt(2, document.getPatient_id());
-            stmt.setString(3, document.getName());
+                    .prepareStatement(
+                            "UPDATE speciality SET spe_id=?, name=? WHERE spe_id=?");
+            stmt.setInt(1, speciality.getSpe_id());
+            stmt.setString(2, speciality.getName());
 
             return stmt.executeUpdate() == 1;
 
@@ -87,10 +86,10 @@ public class DocumentRepository implements IDocumentRepository {
     }
 
     @Override
-    public boolean deleteDocument(Integer id) {
+    public boolean deleteSpeciality(Integer id) {
         try {
             PreparedStatement stmt = connection
-                    .prepareStatement("DELETE FROM document WHERE doc_id=?");
+                    .prepareStatement("DELETE FROM speciality WHERE spe_id=?");
             stmt.setInt(1, id);
             return stmt.executeUpdate() == 1;
         } catch (SQLException e) {
@@ -101,13 +100,13 @@ public class DocumentRepository implements IDocumentRepository {
     }
 
     @Override
-    public Document displayDocument(Integer id) {
+    public Speciality displaySpeciality(Integer id) {
         try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM document WHERE doc_id=?");
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM speciality WHERE spe_id=?");
             stmt.setInt(1, id);
             ResultSet result = stmt.executeQuery();
             if (result.next()) {
-                return instanciateDocumet(result);
+                return instanciateSpeciality(result);
             }
         } catch (SQLException e) {
 
@@ -116,11 +115,10 @@ public class DocumentRepository implements IDocumentRepository {
         return null;
     }
 
-    private Document instanciateDocumet(ResultSet result) {
+    private Speciality instanciateSpeciality(ResultSet result) {
         try {
-            return new Document(
-                    result.getInt("doc_id"),
-                    result.getInt("patient_id"),
+            return new Speciality(
+                    result.getInt("spe_id"),
                     result.getString("name"));
         } catch (SQLException e) {
             e.printStackTrace();
@@ -128,4 +126,5 @@ public class DocumentRepository implements IDocumentRepository {
         return null;
 
     }
+
 }

@@ -1,4 +1,4 @@
-package repository;
+package co.simplon.projetsql.repository;
 
 import java.util.List;
 
