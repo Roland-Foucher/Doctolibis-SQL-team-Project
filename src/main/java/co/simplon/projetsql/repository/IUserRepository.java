@@ -1,5 +1,6 @@
 package co.simplon.projetsql.repository;
 
+import java.sql.Connection;
 import java.util.List;
 
 import co.simplon.projetsql.entity.User;
@@ -15,5 +16,7 @@ public interface IUserRepository {
     boolean update(User user);
     
     boolean deleteById(Integer Id);
+
+    Connection getConnection();
   
 }

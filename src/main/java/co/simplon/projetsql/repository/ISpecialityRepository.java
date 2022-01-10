@@ -1,5 +1,6 @@
 package co.simplon.projetsql.repository;
 
+import java.sql.Connection;
 import java.util.List;
 
 import co.simplon.projetsql.entity.Speciality;
@@ -14,5 +15,7 @@ public interface ISpecialityRepository {
     boolean deleteSpeciality(Integer id);
 
     Speciality displaySpeciality(Integer id);
+
+    Connection getConnection();
 
 }

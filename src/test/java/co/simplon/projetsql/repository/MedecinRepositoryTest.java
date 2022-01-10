@@ -80,7 +80,6 @@ public class MedecinRepositoryTest {
     public void testModifyMedecin() {
         Medecin toAdd = new Medecin(1, "adresse", "legalMention", "presentation", 10);
         medecinRepository.addMedecin(toAdd);
-        toAdd.setAdresse("adresse2");
         assertTrue(medecinRepository.modifyMedecin(toAdd)); 
         
     }
