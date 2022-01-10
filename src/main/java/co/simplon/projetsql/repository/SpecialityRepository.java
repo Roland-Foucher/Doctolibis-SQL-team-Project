@@ -127,4 +127,10 @@ public class SpecialityRepository implements ISpecialityRepository {
 
     }
 
+    public Connection getConnection() {
+        return connection;
+    }
+
+
+
 }

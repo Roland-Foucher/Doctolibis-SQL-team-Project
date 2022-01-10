@@ -1,5 +1,6 @@
 package co.simplon.projetsql.repository;
 
+import java.sql.Connection;
 import java.util.List;
 
 import co.simplon.projetsql.entity.Patient;
@@ -14,5 +15,7 @@ public interface IPatientReposotory {
     boolean deletePatient(Integer id);
 
     Patient displayPatient(Integer id);
+
+    Connection getConnection();
 
 }
