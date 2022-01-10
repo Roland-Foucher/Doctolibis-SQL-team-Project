@@ -145,4 +145,9 @@ public class AppointmentRepository implements IAppointmentRepository {
         return null;
 
     }
+
+    public Connection getConnection() {
+        return connection;
+    }
+
 }

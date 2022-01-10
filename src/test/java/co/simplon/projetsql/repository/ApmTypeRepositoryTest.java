@@ -1,6 +1,7 @@
 package co.simplon.projetsql.repository;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -74,6 +75,6 @@ public class ApmTypeRepositoryTest {
     @Test
     public void testShowListOfRoles() {
         List <ApmType> list = apmTypeRepository.showListOfRoles();
-        assertNotNull(list.size());
+        assertNotEquals(0, list.size());
     }
 }

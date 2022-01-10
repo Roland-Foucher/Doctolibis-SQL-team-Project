@@ -19,9 +19,9 @@ public class App
 {
     public static void main( String[] args )
     {
-        ApmTypeRepository apmTypeRepository = new ApmTypeRepository();
-        
-        apmTypeRepository.modifyApmType(apmTypeRepository.disPlayapmType(1));
+        Appointment appointment = new Appointment(LocalDate.of(2020, 10, 10), 1, 1, 1);
+        AppointmentRepository appointmentRepository = new AppointmentRepository();
+        appointmentRepository.takeApm(appointment);
 
 
     }
