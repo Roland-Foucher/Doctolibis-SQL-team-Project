@@ -1,6 +1,5 @@
 package co.simplon.projetsql;
 
-<<<<<<< HEAD
 import co.simplon.projetsql.entity.Document;
 import co.simplon.projetsql.entity.Medecin;
 import co.simplon.projetsql.entity.Patient;
@@ -13,18 +12,6 @@ import co.simplon.projetsql.repository.ISpecialityRepository;
 import co.simplon.projetsql.repository.MedecinRepository;
 import co.simplon.projetsql.repository.PatientRepository;
 import co.simplon.projetsql.repository.SpecialityRepository;
-=======
-import java.time.LocalDate;
-import java.util.List;
-
-import co.simplon.projetsql.entity.ApmType;
-import co.simplon.projetsql.entity.Appointment;
-import co.simplon.projetsql.entity.Patient;
-import co.simplon.projetsql.entity.Role;
-import co.simplon.projetsql.repository.ApmTypeRepository;
-import co.simplon.projetsql.repository.AppointmentRepository;
-import co.simplon.projetsql.repository.IAppointmentRepository;
->>>>>>> Khaled
 
 /**
  * Hello world!
