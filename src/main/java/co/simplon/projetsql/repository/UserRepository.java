@@ -99,10 +99,10 @@ public class UserRepository implements IUserRepository {
             stmt.setString(2, user.getLname());
             stmt.setString(3, user.getEmail());
             stmt.setString(4, user.getPassword());
-            stmt.setString(4, user.getPhoneNumber());
+            stmt.setString(5, user.getPhoneNumber());
 
 
-            stmt.setInt(5, user.getUser_id());
+            stmt.setInt(6, user.getUser_id());
             
             return stmt.executeUpdate() == 1;
 
@@ -139,6 +139,10 @@ public class UserRepository implements IUserRepository {
             e.printStackTrace();
         }
         return null;
-    }           
+    }
+
+    public Connection getConnection() {
+        return connection;
+    }  
     
 }

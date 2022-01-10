@@ -106,7 +106,7 @@ public class RoleRepository implements IRoleRepository {
     @Override
     public boolean deleteById(Integer id) {
         try {
-            PreparedStatement stmt = connection.prepareStatement("DELETE FROM roles WHERE id=?");
+            PreparedStatement stmt = connection.prepareStatement("DELETE FROM roles WHERE role_id=?");
             stmt.setInt(1, id);
             return stmt.executeUpdate() == 1;
         } catch (SQLException e) {
@@ -127,5 +127,10 @@ public class RoleRepository implements IRoleRepository {
         }
         return null;
     }
+
+    public Connection getConnection() {
+        return connection;
+    }
+
     
 }

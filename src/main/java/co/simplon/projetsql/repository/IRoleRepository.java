@@ -1,5 +1,6 @@
 package co.simplon.projetsql.repository;
 
+import java.sql.Connection;
 import java.util.List;
 
 import co.simplon.projetsql.entity.Role;
@@ -15,4 +16,6 @@ public interface IRoleRepository {
     boolean update(Role role);
 
     boolean deleteById(Integer Id);
+
+    Connection getConnection();
 }

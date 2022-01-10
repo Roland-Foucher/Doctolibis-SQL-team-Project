@@ -1,5 +1,6 @@
 package co.simplon.projetsql.repository;
 
+import java.sql.Connection;
 import java.util.List;
 
 import co.simplon.projetsql.entity.Document;
@@ -14,5 +15,7 @@ public interface IDocumentRepository {
     boolean deleteDocument(Integer id);
 
     Document displayDocument(Integer id);
+
+    Connection getConnection();
 
 }

@@ -129,4 +129,9 @@ public class PatientRepository implements IPatientReposotory {
 
     }
 
+    public Connection getConnection() {
+        return connection;
+    }
+
+
 }
