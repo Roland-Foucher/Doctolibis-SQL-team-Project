@@ -128,4 +128,8 @@ public class DocumentRepository implements IDocumentRepository {
         return null;
 
     }
+
+    public Connection getConnection() {
+        return connection;
+    }
 }
