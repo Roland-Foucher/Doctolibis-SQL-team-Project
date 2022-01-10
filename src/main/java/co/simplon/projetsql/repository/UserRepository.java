@@ -65,12 +65,14 @@ public class UserRepository implements IUserRepository {
                 return update(user);
             }
             PreparedStatement stmt = connection
-            .prepareStatement("INSERT INTO users (fname,lname,email,password) VALUES (?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            .prepareStatement("INSERT INTO users (fname,lname,email,password, phoneNumber) VALUES (?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
 
             stmt.setString(1, user.getFname());
             stmt.setString(2, user.getLname());
             stmt.setString(3, user.getEmail());
             stmt.setString(4, user.getPassword());
+            stmt.setString(5, user.getPhoneNumber());
+
 
 
             if(stmt.executeUpdate() == 1) {
@@ -92,11 +94,14 @@ public class UserRepository implements IUserRepository {
     public boolean update(User user) {
         try {
             PreparedStatement stmt = connection
-                .prepareStatement("UPDATE users SET fname=?, lname=?, email=?, password=? WHERE user_id=?");
+                .prepareStatement("UPDATE users SET fname=?, lname=?, email=?, password=?, phoneNumber=? WHERE user_id=?");
             stmt.setString(1, user.getFname());
             stmt.setString(2, user.getLname());
             stmt.setString(3, user.getEmail());
             stmt.setString(4, user.getPassword());
+            stmt.setString(4, user.getPhoneNumber());
+
+
             stmt.setInt(5, user.getUser_id());
             
             return stmt.executeUpdate() == 1;
@@ -127,7 +132,8 @@ public class UserRepository implements IUserRepository {
                             result.getString("fname"), 
                             result.getString("lname"), 
                             result.getString("email"), 
-                            result.getString("password"));
+                            result.getString("password"),
+                            result.getString("phoneNumber"));
         } catch (SQLException e) {
             
             e.printStackTrace();

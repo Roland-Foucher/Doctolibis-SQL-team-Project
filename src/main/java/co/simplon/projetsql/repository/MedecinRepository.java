@@ -44,16 +44,14 @@ public class MedecinRepository implements IMedecinRepository {
         try {
             PreparedStatement stmt = connection
                     .prepareStatement(
-                            "INSERT INTO medecin (user_id, adress, legalMention, presentation, phoneNumber, price) VALUES (?,?,?,?,?,?)",
+                            "INSERT INTO medecin (user_id, adress, legalMention, presentation, price) VALUES (?,?,?,?,?)",
                             PreparedStatement.RETURN_GENERATED_KEYS);
     
             stmt.setInt(1, medecin.getUser_id());
             stmt.setString(2, medecin.getAdresse());
             stmt.setString(3, medecin.getLegalMention());
             stmt.setString(4, medecin.getPresentation());
-            stmt.setInt(5, medecin.getPhoneNumber());
-
-            stmt.setInt(6, medecin.getPrice());
+            stmt.setInt(5, medecin.getPrice());
 
             if (stmt.executeUpdate() == 1) {
                 ResultSet result = stmt.getGeneratedKeys();
@@ -76,15 +74,15 @@ public class MedecinRepository implements IMedecinRepository {
         try {
             PreparedStatement stmt = connection
                     .prepareStatement(
-                            "UPDATE medecin SET user_id=?, adress=?, legalMention=?, presentation=?, price=?, phoneNumber =? WHERE medecin_id=?");
+                            "UPDATE medecin SET user_id=?, adress=?, legalMention=?, presentation=?, price=? WHERE medecin_id=?");
             
             stmt.setInt(1, medecin.getUser_id());
             stmt.setString(2, medecin.getAdresse());
             stmt.setString(3, medecin.getLegalMention());
             stmt.setString(4, medecin.getPresentation());
             stmt.setInt(5, medecin.getPrice());
-            stmt.setInt(6, medecin.getPhoneNumber());
-            stmt.setInt(7, medecin.getMedecin_id());
+    
+            stmt.setInt(6, medecin.getMedecin_id());
 
             return stmt.executeUpdate() == 1;
 
@@ -134,13 +132,16 @@ public class MedecinRepository implements IMedecinRepository {
                     result.getString("adress"),
                     result.getString("legalMention"),
                     result.getString("presentation"),
-                    result.getInt("price"),
-                    result.getInt("phoneNumber"));
+                    result.getInt("price"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
 
+    }
+
+    public Connection getConnection() {
+        return connection;
     }
 
 }

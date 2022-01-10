@@ -4,22 +4,19 @@ package co.simplon.projetsql.entity;
 public class Patient extends User {
     private Integer patient_id;
     private Integer user_id;
-    private Integer phoneNumber;
-    private Long secuNumber;
+    private String secuNumber;
 
 
     /* constructors */
 
-    public Patient(Integer user_id, Integer phoneNumber, Long secuNumber) {
+    public Patient(Integer user_id, String secuNumber) {
         this.user_id = user_id;
-        this.phoneNumber = phoneNumber;
         this.secuNumber = secuNumber;
     }
 
-    public Patient(Integer patient_id, Integer user_id, Integer phoneNumber, Long secuNumber) {
+    public Patient(Integer patient_id, Integer user_id, String secuNumber) {
         this.patient_id = patient_id;
         this.user_id = user_id;
-        this.phoneNumber = phoneNumber;
         this.secuNumber = secuNumber;
     }
 
@@ -36,19 +33,11 @@ public class Patient extends User {
         this.patient_id = patient_id;
     }
 
-    public Integer getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(Integer phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public Long getSecuNumber() {
+    public String getSecuNumber() {
         return secuNumber;
     }
 
-    public void setSecuNumber(Long secuNumber) {
+    public void setSecuNumber(String secuNumber) {
         this.secuNumber = secuNumber;
     }
 
@@ -62,7 +51,7 @@ public class Patient extends User {
 
     @Override
     public String toString() {
-        return "Patient [patient_id=" + patient_id + ", phoneNumber=" + phoneNumber + ", secuNumber=" + secuNumber
+        return "Patient [patient_id=" + patient_id +  ", secuNumber=" + secuNumber
                 + ", user_id=" + user_id + "]";
     }
 

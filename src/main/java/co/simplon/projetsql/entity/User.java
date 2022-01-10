@@ -11,23 +11,26 @@ public class User {
     private String lname;
     private String email;
     private String password;
+    private String phoneNumber;
     
     //
     // contructors
     //
 
-    public User(Integer user_id, String fname, String lname, String email, String password) {
+    public User(Integer user_id, String fname, String lname, String email, String password, String phoneNumber) {
         this.user_id = user_id;
         this.fname = fname;
         this.lname = lname;
         this.email = email;
         this.password = password;
+        this.phoneNumber = phoneNumber;
     }
-    public User(String fname, String lname, String email, String password) {
+    public User(String fname, String lname, String email, String password, String phoneNumber) {
         this.fname = fname;
         this.lname = lname;
         this.email = email;
         this.password = password;
+        this.phoneNumber = phoneNumber;
     }
     public User() {
     }
@@ -70,6 +73,12 @@ public class User {
     public String toString() {
         return "User [email=" + email + ", fname=" + fname + ", lname=" + lname + ", password=" + password
                 + ", user_id=" + user_id + "]";
+    }
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
 

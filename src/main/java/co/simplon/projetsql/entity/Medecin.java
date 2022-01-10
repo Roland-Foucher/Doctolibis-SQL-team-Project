@@ -8,30 +8,28 @@ public class Medecin extends User {
     private String legalMention;
     private String presentation;
     private Integer price;
-    private Integer phoneNumber;
+
 
     /* constructors */
 
     public Medecin(Integer user_id, String adresse, String legalMention, String presentation,
-            Integer price, Integer phoneNumber) {
+            Integer price) {
         this.user_id = user_id;
         this.adresse = adresse;
         this.legalMention = legalMention;
         this.presentation = presentation;
         this.price = price;
-        this.phoneNumber = phoneNumber;
     }
 
 
     public Medecin(Integer medecin_id, Integer user_id, String adresse, String legalMention,
-            String presentation, Integer price, Integer phoneNumber) {
+            String presentation, Integer price) {
         this.medecin_id = medecin_id;
         this.user_id = user_id;
         this.adresse = adresse;
         this.legalMention = legalMention;
         this.presentation = presentation;
         this.price = price;
-        this.phoneNumber = phoneNumber;
     }
 
     public Medecin() {
@@ -89,20 +87,11 @@ public class Medecin extends User {
         this.user_id = user_id;
     }
 
-    public Integer getPhoneNumber() {
-        return phoneNumber;
-    }
-
-
-    public void setPhoneNumber(Integer phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
 
     @Override
     public String toString() {
         return "Medecin [adresse=" + adresse + ", legalMention=" + legalMention + ", medecin_id=" + medecin_id
-                + ", phoneNumber=" + phoneNumber + ", presentation=" + presentation + ", price=" + price
+                + ", presentation=" + presentation + ", price=" + price
                 + ", user_id=" + user_id + "]";
     }
     

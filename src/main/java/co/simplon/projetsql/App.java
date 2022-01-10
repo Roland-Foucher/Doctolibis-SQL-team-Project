@@ -34,15 +34,18 @@ public class App
         // System.out.println(documentRepository.deleteDocument(2));
 
 
-        ISpecialityRepository specialityRepository = new SpecialityRepository();
-        System.out.println(specialityRepository.findAll());
-        System.out.println(specialityRepository.displaySpeciality(1));
-        Speciality speciality = new Speciality("Orthodentiste");
-        System.out.println(specialityRepository.addSpeciality(speciality));
-        speciality.setName("Orthodontiste");
-        System.out.println(specialityRepository.modifySpeciality(speciality));
-        System.out.println(specialityRepository.deleteSpeciality(speciality.getSpe_id()));
+        // ISpecialityRepository specialityRepository = new SpecialityRepository();
+        // System.out.println(specialityRepository.findAll());
+        // System.out.println(specialityRepository.displaySpeciality(1));
+        // Speciality speciality = new Speciality("Orthodentiste");
+        // System.out.println(specialityRepository.addSpeciality(speciality));
+        // speciality.setName("Orthodontiste");
+        // System.out.println(specialityRepository.modifySpeciality(speciality));
+        // System.out.println(specialityRepository.deleteSpeciality(speciality.getSpe_id()));
 
+        // IMedecinRepository medecinRepository = new MedecinRepository();
+        // Medecin medecin = new Medecin(5, 1, "adresse", "chirurgien", "presentation", 10);
+        // medecinRepository.modifyMedecin(medecin);
 
         
 
