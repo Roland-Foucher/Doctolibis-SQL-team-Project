@@ -144,4 +144,42 @@ public class MedecinRepository implements IMedecinRepository {
         return connection;
     }
 
+    @Override
+    public Medecin findByadress(String adress) {
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM medecin WHERE adress=?");
+            stmt.setString(1, adress);
+            ResultSet result = stmt.executeQuery();
+            if (result.next()) {
+                return instanciateMedecin(result);
+            }
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public Medecin findBySpeciality(String speciality) {
+       // TODO jonction a faire !
+       return null;
+    }
+
+    @Override
+    public Medecin findByPrice(int price) {
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM medecin WHERE price=?");
+            stmt.setInt(1, price);
+            ResultSet result = stmt.executeQuery();
+            if (result.next()) {
+                return instanciateMedecin(result);
+            }
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

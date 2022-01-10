@@ -60,14 +60,20 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void testDisplayUser() {
+    public void testDisplayUserById() {
         User toAdd = new User("fname", "lname", "email", "password", "phoneNumber");
         userRepository.save(toAdd);
         assertNotNull(userRepository.find(toAdd.getUser_id()));
-        
 
         
     }
+    @Test
+    public void testDisplayUserByName() {
+        User toAdd = new User("fname", "lname", "email", "password", "phoneNumber");
+        userRepository.save(toAdd);
+        assertNotNull(userRepository.findByLastName(toAdd.getLname()));
+    }
+
 
     @Test
     public void testFindAll() {

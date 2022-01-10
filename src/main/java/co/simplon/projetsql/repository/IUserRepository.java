@@ -18,5 +18,7 @@ public interface IUserRepository {
     boolean deleteById(Integer Id);
 
     Connection getConnection();
+
+    User findByLastName(String name);
   
 }

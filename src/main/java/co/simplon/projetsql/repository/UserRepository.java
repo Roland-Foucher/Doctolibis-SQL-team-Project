@@ -143,6 +143,22 @@ public class UserRepository implements IUserRepository {
 
     public Connection getConnection() {
         return connection;
+    }
+
+    @Override
+    public User findByLastName(String name) {
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM users WHERE lname=?");
+            stmt.setString(1, name);
+            ResultSet result = stmt.executeQuery();
+            if (result.next()) {
+                return instanciateUser(result);
+            }
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return null;
     }  
     
 }

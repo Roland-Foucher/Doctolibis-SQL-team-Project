@@ -18,4 +18,10 @@ public interface IMedecinRepository {
 
     Connection getConnection();
 
+    Medecin findByadress(String adress);
+
+    Medecin findBySpeciality(String Speciality);
+
+    Medecin findByPrice(int Price);
+
 }

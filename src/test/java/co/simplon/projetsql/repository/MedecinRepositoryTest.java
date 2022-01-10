@@ -65,9 +65,25 @@ public class MedecinRepositoryTest {
         Medecin toAdd = new Medecin(1, "adresse", "legalMention", "presentation", 10);
         medecinRepository.addMedecin(toAdd);
         assertNotNull(medecinRepository.displayMedecin(toAdd.getMedecin_id()));
-        
+    }
 
-        
+    @Test
+    public void testfindMedecinByprice(){
+        Medecin toAdd = new Medecin(1, "adresse", "legalMention", "presentation", 10);
+        medecinRepository.addMedecin(toAdd);
+        assertNotNull(medecinRepository.findByPrice(toAdd.getPrice()));
+    }
+
+    @Test
+    public void testfindMedecinBySpeciality(){
+        //TODO make test with speciality
+    }
+
+    @Test
+    public void testfindMedecinByadress(){
+        Medecin toAdd = new Medecin(1, "adresse", "legalMention", "presentation", 10);
+        medecinRepository.addMedecin(toAdd);
+        assertNotNull(medecinRepository.findByadress(toAdd.getAdresse()));
     }
 
     @Test
