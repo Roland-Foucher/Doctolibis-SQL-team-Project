@@ -36,9 +36,9 @@ public class ApmTypeRepository implements IApmTypeRepository {
                 return addApmType(apmType);
             }
             PreparedStatement stmt = connection
-            .prepareStatement("INSERT INTO appointment (type) VALUES (?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            .prepareStatement("INSERT INTO apm_type (type) VALUES (?)", PreparedStatement.RETURN_GENERATED_KEYS);
            
-            stmt.setInt(1, apmType.getApmType_id());
+            stmt.setString(1, apmType.getType());
         
             if(stmt.executeUpdate() == 1) {
                 ResultSet result = stmt.getGeneratedKeys();
@@ -62,7 +62,7 @@ public class ApmTypeRepository implements IApmTypeRepository {
     @Override
     public ApmType disPlayapmType(int id) {
         try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM apmType WHERE  apmType_id=?");
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM apm_type WHERE  apmType_id=?");
             stmt.setInt(1, id);
             ResultSet result = stmt.executeQuery();
             if (result.next()) {
@@ -81,8 +81,9 @@ public class ApmTypeRepository implements IApmTypeRepository {
         try {
             PreparedStatement stmt = connection
                     .prepareStatement(
-                            "UPDATE appointment SET type=? WHERE apm_id=?");
-            stmt.setInt(1, apmType.getApmType_id());
+                            "UPDATE apm_type SET type=? WHERE apmType_id=?");
+            stmt.setString(1, apmType.getType());              
+            stmt.setInt(2, apmType.getApmType_id());
            
 
             return stmt.executeUpdate() == 1;
@@ -99,7 +100,7 @@ public class ApmTypeRepository implements IApmTypeRepository {
     public boolean deleteApm(int id) {
         try {
             PreparedStatement stmt = connection
-                    .prepareStatement("DELETE FROM apmType WHERE apmType_id=?");
+                    .prepareStatement("DELETE FROM apm_type WHERE apmType_id=?");
             stmt.setInt(1, id);
             return stmt.executeUpdate() == 1;
         } catch (SQLException e) {
@@ -114,7 +115,7 @@ public class ApmTypeRepository implements IApmTypeRepository {
     public List<ApmType> showListOfRoles() {
         try {
 
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM apmType");
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM apm_type");
             ResultSet result = stmt.executeQuery();
             List<ApmType> apmTypeList = new ArrayList<>();
             while (result.next()) {
@@ -140,6 +141,10 @@ public class ApmTypeRepository implements IApmTypeRepository {
         }
         return null;
 
+    }
+
+    public Connection getConnection() {
+        return connection;
     }
     
     
