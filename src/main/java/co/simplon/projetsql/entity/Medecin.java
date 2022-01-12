@@ -1,6 +1,8 @@
 package co.simplon.projetsql.entity;
 
-public class Medecin extends User {
+import java.util.List;
+
+public class Medecin {
     
     private Integer medecin_id;
     private Integer user_id;
@@ -8,6 +10,7 @@ public class Medecin extends User {
     private String legalMention;
     private String presentation;
     private Integer price;
+    private List <Patient> patientsList;
 
 
     /* constructors */
@@ -93,6 +96,16 @@ public class Medecin extends User {
         return "Medecin [adresse=" + adresse + ", legalMention=" + legalMention + ", medecin_id=" + medecin_id
                 + ", presentation=" + presentation + ", price=" + price
                 + ", user_id=" + user_id + "]";
+    }
+
+
+    public List<Patient> getPatientsList() {
+        return patientsList;
+    }
+
+
+    public void setPatientsList(List<Patient> patientsList) {
+        this.patientsList = patientsList;
     }
     
 

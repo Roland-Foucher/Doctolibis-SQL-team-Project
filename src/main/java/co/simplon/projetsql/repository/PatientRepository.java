@@ -133,5 +133,43 @@ public class PatientRepository implements IPatientReposotory {
         return connection;
     }
 
+    @Override
+    public Patient findPatientWithUserId(Integer id) {
+        
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM patient WHERE user_id=?");
+            stmt.setInt(1, id);
+            ResultSet result = stmt.executeQuery();
+            if (result.next()) {
+                return instanciatePatient(result);
+            }
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<Patient> findAllPatientsByMedecinId(Integer id) {
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM patient, medecin_patient WHERE patient.patient_id = medecin_patient.patient_id; ");
+            ResultSet result = stmt.executeQuery();
+            List<Patient> patientList = new ArrayList<>();
+            while (result.next()) {
+                Patient patient = instanciatePatient(result);
+                patientList.add(patient);
+            }
+            return patientList;
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return null;
+        
+    }
+
+    
+
 
 }

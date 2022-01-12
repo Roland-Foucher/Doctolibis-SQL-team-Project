@@ -4,6 +4,7 @@ import co.simplon.projetsql.entity.Document;
 import co.simplon.projetsql.entity.Medecin;
 import co.simplon.projetsql.entity.Patient;
 import co.simplon.projetsql.entity.Speciality;
+import co.simplon.projetsql.entity.User;
 import co.simplon.projetsql.repository.DocumentRepository;
 import co.simplon.projetsql.repository.IDocumentRepository;
 import co.simplon.projetsql.repository.IMedecinRepository;
@@ -12,6 +13,7 @@ import co.simplon.projetsql.repository.ISpecialityRepository;
 import co.simplon.projetsql.repository.MedecinRepository;
 import co.simplon.projetsql.repository.PatientRepository;
 import co.simplon.projetsql.repository.SpecialityRepository;
+import co.simplon.projetsql.repository.UserRepository;
 
 /**
  * Hello world!
@@ -21,6 +23,15 @@ public class App
 {
     public static void main( String[] args )
     {
+
+      MedecinRepository medecinRepository = new MedecinRepository();
+      Medecin medecin =  medecinRepository.findMedecinWithListOfPatients(1);
+      System.out.println(medecin.getPatientsList());
+
+
+      
+
+
         // IDocumentRepository documentRepository = new DocumentRepository();
         // Document document = new Document(1, "doc1");
         // Document document2 = new Document(1, "doc2");
