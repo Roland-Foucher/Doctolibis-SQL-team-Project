@@ -1,5 +1,6 @@
 package co.simplon.projetsql;
 
+import co.simplon.projetsql.GlobalRepository.DocumentRepositoryTest;
 import co.simplon.projetsql.entity.Document;
 import co.simplon.projetsql.entity.Medecin;
 import co.simplon.projetsql.entity.Patient;
@@ -23,10 +24,9 @@ public class App
 {
     public static void main( String[] args )
     {
-
-      MedecinRepository medecinRepository = new MedecinRepository();
-      Medecin medecin =  medecinRepository.findMedecinWithListOfPatients(1);
-      System.out.println(medecin.getPatientsList());
+        
+        DocumentRepositoryTest documentRepositoryTest = new DocumentRepositoryTest();
+        System.out.println(documentRepositoryTest.find(27)); 
 
 
       
