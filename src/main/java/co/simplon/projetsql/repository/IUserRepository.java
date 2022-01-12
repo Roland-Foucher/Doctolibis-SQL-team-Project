@@ -20,5 +20,8 @@ public interface IUserRepository {
     Connection getConnection();
 
     User findByLastName(String name);
-  
+    
+    User findByMedecinId(Integer id);
+
+    User findUserWithPatient(Integer id);
 }

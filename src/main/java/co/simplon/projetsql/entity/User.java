@@ -12,6 +12,8 @@ public class User {
     private String email;
     private String password;
     private String phoneNumber;
+    private Medecin medecin;
+    private Patient patient;
     
     //
     // contructors
@@ -79,6 +81,18 @@ public class User {
     }
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+    public Medecin getMedecin() {
+        return medecin;
+    }
+    public void setMedecin(Medecin medecin) {
+        this.medecin = medecin;
+    }
+    public Patient getPatient() {
+        return patient;
+    }
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
 

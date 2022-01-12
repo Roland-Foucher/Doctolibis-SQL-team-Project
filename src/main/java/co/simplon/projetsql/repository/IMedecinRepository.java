@@ -24,4 +24,8 @@ public interface IMedecinRepository {
 
     Medecin findByPrice(int Price);
 
+    Medecin findByUserId(Integer id);
+
+    Medecin findMedecinWithListOfPatients(Integer id);
+
 }

@@ -13,9 +13,13 @@ import co.simplon.projetsql.entity.User;
 public class UserRepository implements IUserRepository {
 
     private Connection connection;
+    private MedecinRepository medecinRepository;
+    private PatientRepository patientRepository;
     
 
     public UserRepository() {
+        medecinRepository = new MedecinRepository();
+        patientRepository = new PatientRepository();
         try {
             this.connection = DriverManager.getConnection("jdbc:mysql://simplon:1234@localhost:3306/DOCTOLIBIS");
         } catch (SQLException e) {
@@ -126,6 +130,7 @@ public class UserRepository implements IUserRepository {
         }
         return false;
     }
+
     private User instanciateUser(ResultSet result){
         try {
             return new User(result.getInt("user_id"), 
@@ -159,6 +164,43 @@ public class UserRepository implements IUserRepository {
             e.printStackTrace();
         }
         return null;
-    }  
+    }
+
+    @Override
+    public User findByMedecinId(Integer id) {
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM users WHERE user_id=?");
+            stmt.setInt(1, id);
+            ResultSet result = stmt.executeQuery();
+            if (result.next()) {
+                User user =  instanciateUser(result);
+                user.setMedecin(medecinRepository.findByUserId(id));
+                return user;
+            }
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public User findUserWithPatient(Integer id) {
+          try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM users WHERE user_id=?");
+            stmt.setInt(1, id);
+            ResultSet result = stmt.executeQuery();
+            if (result.next()) {
+                User user = instanciateUser(result);
+                user.setPatient(patientRepository.findPatientWithUserId(id));
+                return user;
+            }
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
     
 }

@@ -12,8 +12,10 @@ import co.simplon.projetsql.entity.Medecin;
 
 public class MedecinRepository implements IMedecinRepository {
     Connection connection;
+    PatientRepository patientRepository;
 
     public MedecinRepository() {
+        patientRepository = new PatientRepository();
         try {
             connection = DriverManager.getConnection("jdbc:mysql://simplon:1234@localhost:3306/DOCTOLIBIS");
         } catch (SQLException e) {
@@ -180,6 +182,42 @@ public class MedecinRepository implements IMedecinRepository {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public Medecin findByUserId(Integer id) {
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM medecin WHERE user_id=?");
+            stmt.setInt(1, id);
+            ResultSet result = stmt.executeQuery();
+            if (result.next()) {
+                return instanciateMedecin(result);
+            }
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return null;
+        
+    }
+
+    @Override
+    public Medecin findMedecinWithListOfPatients(Integer id) {
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM medecin WHERE medecin_id=?");
+            stmt.setInt(1, id);
+            ResultSet result = stmt.executeQuery();
+            if (result.next()) {
+                Medecin medecin = instanciateMedecin(result);
+                medecin.setPatientsList(patientRepository.findAllPatientsByMedecinId(id));
+                return medecin;
+            }
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return null;
+        
     }
 
 }
