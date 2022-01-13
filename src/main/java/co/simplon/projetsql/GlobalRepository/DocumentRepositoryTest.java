@@ -1,4 +1,4 @@
-package co.simplon.projetsql.GlobalRepository;
+package co.simplon.projetsql.globalRepository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

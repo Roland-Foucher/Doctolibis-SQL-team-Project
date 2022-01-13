@@ -1,20 +1,9 @@
 package co.simplon.projetsql;
 
-import co.simplon.projetsql.GlobalRepository.DocumentRepositoryTest;
-import co.simplon.projetsql.entity.Document;
+
 import co.simplon.projetsql.entity.Medecin;
-import co.simplon.projetsql.entity.Patient;
-import co.simplon.projetsql.entity.Speciality;
-import co.simplon.projetsql.entity.User;
-import co.simplon.projetsql.repository.DocumentRepository;
-import co.simplon.projetsql.repository.IDocumentRepository;
-import co.simplon.projetsql.repository.IMedecinRepository;
-import co.simplon.projetsql.repository.IPatientReposotory;
-import co.simplon.projetsql.repository.ISpecialityRepository;
+
 import co.simplon.projetsql.repository.MedecinRepository;
-import co.simplon.projetsql.repository.PatientRepository;
-import co.simplon.projetsql.repository.SpecialityRepository;
-import co.simplon.projetsql.repository.UserRepository;
 
 /**
  * Hello world!
@@ -24,9 +13,10 @@ public class App
 {
     public static void main( String[] args )
     {
-        
-        DocumentRepositoryTest documentRepositoryTest = new DocumentRepositoryTest();
-        System.out.println(documentRepositoryTest.find(27)); 
+
+      MedecinRepository medecinRepository = new MedecinRepository();
+      Medecin medecin =  medecinRepository.findMedecinWithListOfPatients(1);
+      System.out.println(medecin.getPatientsList());
 
 
       

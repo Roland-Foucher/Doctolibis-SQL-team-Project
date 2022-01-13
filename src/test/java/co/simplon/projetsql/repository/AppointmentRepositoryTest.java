@@ -12,7 +12,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import co.simplon.projetsql.entity.ApmType;
 import co.simplon.projetsql.entity.Appointment;
 
 public class AppointmentRepositoryTest {
