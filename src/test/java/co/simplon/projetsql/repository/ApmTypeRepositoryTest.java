@@ -1,6 +1,5 @@
 package co.simplon.projetsql.repository;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -17,34 +16,35 @@ import co.simplon.projetsql.entity.ApmType;
 public class ApmTypeRepositoryTest {
 
     private IApmTypeRepository apmTypeRepository;
+
     @Before
-    public void setUp(){
+    public void setUp() {
         apmTypeRepository = new ApmTypeRepository();
 
-         try {
+        try {
             apmTypeRepository.getConnection().setAutoCommit(false);
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
         }
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() {
         try {
             apmTypeRepository.getConnection().rollback();
             apmTypeRepository.getConnection().setAutoCommit(true);
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
         }
-       
+
     }
 
     @Test
     public void testAddApmType() {
-       ApmType apmType = new ApmType("video");
-       assertTrue(apmTypeRepository.addApmType(apmType));
+        ApmType apmType = new ApmType("video");
+        assertTrue(apmTypeRepository.addApmType(apmType));
 
     }
 
@@ -53,15 +53,15 @@ public class ApmTypeRepositoryTest {
         ApmType apmType = new ApmType("video");
         apmTypeRepository.addApmType(apmType);
         assertTrue(apmTypeRepository.deleteApm(apmType.getApmType_id()));
-        
+
     }
 
     @Test
     public void testDisPlayapmType() {
         ApmType apmType = new ApmType("video");
         apmTypeRepository.addApmType(apmType);
-        assertNotNull(apmTypeRepository.disPlayapmType(apmType.getApmType_id())); 
-        
+        assertNotNull(apmTypeRepository.disPlayapmType(apmType.getApmType_id()));
+
     }
 
     @Test
@@ -74,7 +74,7 @@ public class ApmTypeRepositoryTest {
 
     @Test
     public void testShowListOfRoles() {
-        List <ApmType> list = apmTypeRepository.showListOfRoles();
+        List<ApmType> list = apmTypeRepository.showListOfRoles();
         assertNotEquals(0, list.size());
     }
 }

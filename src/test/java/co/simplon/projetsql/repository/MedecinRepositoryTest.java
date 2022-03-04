@@ -1,6 +1,5 @@
 package co.simplon.projetsql.repository;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -24,8 +23,7 @@ public class MedecinRepositoryTest {
         try {
 
             medecinRepository.getConnection().setAutoCommit(false);
-           
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -34,16 +32,14 @@ public class MedecinRepositoryTest {
     @After
     public void tearDown() {
         try {
-            //Après chaque test on "rollback" la base de données, c'est à dire qu'on
-            //annule les modifications qu'on a possiblement faites dessus
+            // Après chaque test on "rollback" la base de données, c'est à dire qu'on
+            // annule les modifications qu'on a possiblement faites dessus
             medecinRepository.getConnection().rollback();
             medecinRepository.getConnection().setAutoCommit(true);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
-
 
     @Test
     public void testAddMedecin() {
@@ -68,19 +64,19 @@ public class MedecinRepositoryTest {
     }
 
     @Test
-    public void testfindMedecinByprice(){
+    public void testfindMedecinByprice() {
         Medecin toAdd = new Medecin(1, "adresse", "legalMention", "presentation", 10);
         medecinRepository.addMedecin(toAdd);
         assertNotNull(medecinRepository.findByPrice(toAdd.getPrice()));
     }
 
     @Test
-    public void testfindMedecinBySpeciality(){
-        //TODO make test with speciality
+    public void testfindMedecinBySpeciality() {
+
     }
 
     @Test
-    public void testfindMedecinByadress(){
+    public void testfindMedecinByadress() {
         Medecin toAdd = new Medecin(1, "adresse", "legalMention", "presentation", 10);
         medecinRepository.addMedecin(toAdd);
         assertNotNull(medecinRepository.findByadress(toAdd.getAdresse()));
@@ -96,7 +92,7 @@ public class MedecinRepositoryTest {
     public void testModifyMedecin() {
         Medecin toAdd = new Medecin(1, "adresse", "legalMention", "presentation", 10);
         medecinRepository.addMedecin(toAdd);
-        assertTrue(medecinRepository.modifyMedecin(toAdd)); 
-        
+        assertTrue(medecinRepository.modifyMedecin(toAdd));
+
     }
 }

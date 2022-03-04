@@ -15,8 +15,7 @@ import co.simplon.projetsql.entity.User;
 
 public class UserRepositoryTest {
 
-
-    private IUserRepository userRepository;
+    private UserRepository userRepository;
 
     @Before
     public void setUp() {

@@ -19,7 +19,7 @@ public class AppointmentRepository implements IAppointmentRepository {
         try {
             this.connection = DriverManager.getConnection("jdbc:mysql://simplon:1234@localhost:3306/DOCTOLIBIS");
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
         }
     }
@@ -74,7 +74,6 @@ public class AppointmentRepository implements IAppointmentRepository {
             e.printStackTrace();
         }
 
-
         return null;
     }
 
@@ -92,7 +91,6 @@ public class AppointmentRepository implements IAppointmentRepository {
             }
             return appointmentsList;
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -103,18 +101,20 @@ public class AppointmentRepository implements IAppointmentRepository {
     public boolean takeApm(Appointment appointment) {
         try {
 
-            if(appointment.getApm_id() != null) {
+            if (appointment.getApm_id() != null) {
                 return editingApm(appointment);
             }
             PreparedStatement stmt = connection
-            .prepareStatement("INSERT INTO appointment (date,patient_id,medecin_id,apmType_id) VALUES (?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
-           
+                    .prepareStatement(
+                            "INSERT INTO appointment (date,patient_id,medecin_id,apmType_id) VALUES (?,?,?,?)",
+                            PreparedStatement.RETURN_GENERATED_KEYS);
+
             stmt.setDate(1, Date.valueOf(appointment.getDate()));
             stmt.setInt(2, appointment.getPatient_id());
             stmt.setInt(3, appointment.getMedecin_id());
             stmt.setInt(4, appointment.getApmType_id());
 
-            if(stmt.executeUpdate() == 1) {
+            if (stmt.executeUpdate() == 1) {
                 ResultSet result = stmt.getGeneratedKeys();
                 result.next();
                 appointment.setApm_id(result.getInt(1));
@@ -122,12 +122,10 @@ public class AppointmentRepository implements IAppointmentRepository {
                 return true;
             }
 
-
         } catch (SQLException e) {
-            
+
             e.printStackTrace();
         }
-
 
         return false;
     }

@@ -1,6 +1,5 @@
 package co.simplon.projetsql.repository;
 
-import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,21 +8,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.cj.xdevapi.PreparableStatement;
-
 import co.simplon.projetsql.entity.ApmType;
-import co.simplon.projetsql.entity.Appointment;
 
 public class ApmTypeRepository implements IApmTypeRepository {
 
-    
     private Connection connection;
 
     public ApmTypeRepository() {
         try {
             this.connection = DriverManager.getConnection("jdbc:mysql://simplon:1234@localhost:3306/DOCTOLIBIS");
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -32,15 +26,16 @@ public class ApmTypeRepository implements IApmTypeRepository {
     public boolean addApmType(ApmType apmType) {
         try {
 
-            if(apmType.getApmType_id() != null) {
+            if (apmType.getApmType_id() != null) {
                 return addApmType(apmType);
             }
             PreparedStatement stmt = connection
-            .prepareStatement("INSERT INTO apm_type (type) VALUES (?)", PreparedStatement.RETURN_GENERATED_KEYS);
-           
+                    .prepareStatement("INSERT INTO apm_type (type) VALUES (?)",
+                            PreparedStatement.RETURN_GENERATED_KEYS);
+
             stmt.setString(1, apmType.getType());
-        
-            if(stmt.executeUpdate() == 1) {
+
+            if (stmt.executeUpdate() == 1) {
                 ResultSet result = stmt.getGeneratedKeys();
                 result.next();
                 apmType.setApmType_id(result.getInt(1));
@@ -48,13 +43,10 @@ public class ApmTypeRepository implements IApmTypeRepository {
                 return true;
             }
 
-
         } catch (SQLException e) {
-            
+
             e.printStackTrace();
         }
-
-
 
         return false;
     }
@@ -82,9 +74,8 @@ public class ApmTypeRepository implements IApmTypeRepository {
             PreparedStatement stmt = connection
                     .prepareStatement(
                             "UPDATE apm_type SET type=? WHERE apmType_id=?");
-            stmt.setString(1, apmType.getType());              
+            stmt.setString(1, apmType.getType());
             stmt.setInt(2, apmType.getApmType_id());
-           
 
             return stmt.executeUpdate() == 1;
 
@@ -92,7 +83,7 @@ public class ApmTypeRepository implements IApmTypeRepository {
 
             e.printStackTrace();
         }
-        // TODO Auto-generated method stub
+
         return false;
     }
 
@@ -106,7 +97,6 @@ public class ApmTypeRepository implements IApmTypeRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
 
         return false;
     }
@@ -130,12 +120,12 @@ public class ApmTypeRepository implements IApmTypeRepository {
 
         return null;
     }
-    
+
     private ApmType instanciateApmType(ResultSet result) {
         try {
             return new ApmType(result.getInt("apmType_id"),
                     result.getString("type"));
-                
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -146,6 +136,5 @@ public class ApmTypeRepository implements IApmTypeRepository {
     public Connection getConnection() {
         return connection;
     }
-    
-    
+
 }

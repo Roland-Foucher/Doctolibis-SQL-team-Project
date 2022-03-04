@@ -12,39 +12,39 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import co.simplon.projetsql.entity.ApmType;
 import co.simplon.projetsql.entity.Appointment;
 
 public class AppointmentRepositoryTest {
     private IAppointmentRepository appointmentRepository;
+
     @Before
-    public void setUp(){
+    public void setUp() {
         appointmentRepository = new AppointmentRepository();
 
-         try {
+        try {
             appointmentRepository.getConnection().setAutoCommit(false);
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
         }
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() {
         try {
             appointmentRepository.getConnection().rollback();
             appointmentRepository.getConnection().setAutoCommit(true);
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
         }
-       
+
     }
 
     @Test
     public void testTakeApm() {
-       Appointment appointment = new Appointment(LocalDate.of(2021, 02, 12), 1, 1, 1);
-       assertTrue(appointmentRepository.takeApm(appointment));
+        Appointment appointment = new Appointment(LocalDate.of(2021, 02, 12), 1, 1, 1);
+        assertTrue(appointmentRepository.takeApm(appointment));
 
     }
 
@@ -53,15 +53,15 @@ public class AppointmentRepositoryTest {
         Appointment appointment = new Appointment(LocalDate.of(2021, 02, 12), 1, 1, 1);
         appointmentRepository.takeApm(appointment);
         assertTrue(appointmentRepository.delApm(appointment.getApm_id()));
-        
+
     }
 
     @Test
     public void testDisPlayApm() {
         Appointment appointment = new Appointment(LocalDate.of(2021, 02, 12), 1, 1, 1);
         appointmentRepository.takeApm(appointment);
-        assertNotNull(appointmentRepository.showApm(appointment.getApm_id())); 
-        
+        assertNotNull(appointmentRepository.showApm(appointment.getApm_id()));
+
     }
 
     @Test
@@ -76,7 +76,7 @@ public class AppointmentRepositoryTest {
     public void testShowListOfApm() {
         Appointment appointment = new Appointment(LocalDate.of(2021, 02, 12), 1, 1, 1);
         appointmentRepository.takeApm(appointment);
-        List <Appointment> list = appointmentRepository.showListOfApm();
+        List<Appointment> list = appointmentRepository.showListOfApm();
         assertNotEquals(0, list.size());
     }
 }
